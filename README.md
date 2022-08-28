@@ -16,13 +16,17 @@ cd My_Project
 # Fetch an installer for the latest release of Overlord
 # and run it with your selected version of python (we suggest using you system interpreter)
 #
-# PAY ATTENTION!!!
+# NOW PAY ATTENTION!!!
+# --------------------
+#
 # if your default python interpreter on your terminal for `python` is not 
 # your prefered version of python, or is not python version 3.9.1 or greater
-# replace `python ` in the following line with a path or keyword to your 
-# prefered version which is 3.9.1 or greater (example; `python3`)
 #
-wget -O - https://eastercompany.eu.pythonanywhere.com/api/download?file=install.py | python
+# replace the last keyword at the very end of the `wget command` used in this example; `python` 
+# and replace it with a path or keyword to your that points to your chosen interpreter 
+# Example; `python3` or `/path/to/executable`
+#
+wget -O - https://eastercompany.eu.pythonanywhere.com/api/download?file=https%3A%2F%2Fgithub.com%2FEasterCompany%2FRDFS%2Fblob%2FRelease%2Finstall.py | python
 
 # Running Overlord CLI
 # this will enter the user into the interface for the first time
