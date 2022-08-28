@@ -26,7 +26,7 @@ cd My_Project
 # and replace it with a path or keyword to your that points to your chosen interpreter 
 # Example; `python3` or `/path/to/executable`
 #
-wget -O - https://eastercompany.eu.pythonanywhere.com/api/download?file=https%3A%2F%2Fgithub.com%2FEasterCompany%2FRDFS%2Fblob%2FRelease%2Finstall.py | python
+wget -O - https://eastercompany.eu.pythonanywhere.com/api/download?RDFS=true&file=install.py | python
 
 # Running Overlord CLI
 # this will enter the user into the interface for the first time
