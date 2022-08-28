@@ -19,8 +19,8 @@ cd My_Project
 # PAY ATTENTION!!!
 # if your default python interpreter on your terminal for `python` is not 
 # your prefered version of python, or is not python version 3.9.1 or greater
-# replace `| python ` in the following line with a path to your prefered version
-# or keyword command to call it (example; `python3` or `python3.10`)
+# replace `python ` in the following line with a path or keyword to your 
+# prefered version which is 3.9.1 or greater (example; `python3`)
 #
 wget -O - https://eastercompany.eu.pythonanywhere.com/api/latest/release/install.py | python
 
