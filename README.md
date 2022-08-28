@@ -70,3 +70,7 @@ Using this *"Full Stack framework"* we have named *Overlord* we aim to support v
 Once we have built a sufficient mass of clients who pay for premium features we will re-focus our scope of research and development back towards Artificial Intelligence, Virtual Intelligence & Our favourite Project, Dexter - powered by Overlord & E-Panel. Funded by our developments with our Clients.
 
 Dexter shall remain open-source and we will strive for a better world in-which the development of A.I. is primarily focused on creating a future that doesn't invovle us fucking-it-all-up.
+
+[Learn More](https://www.easter.company)
+
+- Owen Cameron Easter (28/08/2022) 
