@@ -22,7 +22,7 @@ cd My_Project
 # replace `python ` in the following line with a path or keyword to your 
 # prefered version which is 3.9.1 or greater (example; `python3`)
 #
-wget -O - https://eastercompany.eu.pythonanywhere.com/api/latest/release/install.py | python
+wget -O - https://eastercompany.eu.pythonanywhere.com/api/download?file=install.py | python
 
 # Running Overlord CLI
 # this will enter the user into the interface for the first time
