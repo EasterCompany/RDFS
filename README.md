@@ -2,39 +2,6 @@
 
 Welcome to the RDFS repository, this is an open-source public api mostly just for use internally within Easter Company; However you've probably ended up here because you are looking for the `Overlord Installer` file right? then you should [click here](https://www.easter.company/documentation/overlord/download).
 
-Alternatively you can install Overlord without downloading the install.py by following this quick bash tutorial:
-```#bash
-
-# Make a new directory to contain your project 
-# Avoid "-" or "0-9" or most other special characters
-# excluding underscore ("_") which are safe. 
-mkdir My_Project
-
-# Navigate into the directory
-cd My_Project
-
-# Fetch an installer for the latest release of Overlord
-# and run it with your selected version of python (we suggest using you system interpreter)
-#
-# NOW PAY ATTENTION!!!
-# --------------------
-#
-# if your default python interpreter on your terminal for `python` is not 
-# your prefered version of python, or is not python version 3.9.1 or greater
-#
-# replace the last keyword at the very end of the `wget command` used in this example; `python` 
-# and replace it with a path or keyword to your that points to your chosen interpreter 
-# Example; `python3` or `/path/to/executable`
-#
-wget -O - https://eastercompany.eu.pythonanywhere.com/api/download?RDFS=true&file=install.py | python
-
-# Running Overlord CLI
-# this will enter the user into the interface for the first time
-# and be greated by a introduction message
-./o __load_introduction_message__
-
-```
-
 ## Overlord
 
 Overlord is a Full Stack Framework for developing JavaScript & Python based Web & Mobile applications natively on Android or iOS devices while also being able to deploy the same application to the web for a great Desktop experience.
