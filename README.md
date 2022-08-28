@@ -72,5 +72,3 @@ Once we have built a sufficient mass of clients who pay for premium features we 
 Dexter shall remain open-source and we will strive for a better world in-which the development of A.I. is primarily focused on creating a future that doesn't invovle us fucking-it-all-up.
 
 [Learn More](https://www.easter.company)
-
-- Owen Cameron Easter (28/08/2022) 
