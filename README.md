@@ -12,6 +12,7 @@ you should continue onto reading the E-Panel section of this document or [Read m
 ### Install Overlord (Linux & Mac)
 
 ```bash
+sudo rm /bin/create-app &>/dev/null
 sudo wget -P /bin/ https://raw.githubusercontent.com/EasterCompany/RDFS/Prd/Overlord/create-app
 sudo chmod +x /bin/create-app
 ```
