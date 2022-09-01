@@ -4,6 +4,7 @@ from sys import argv as a, executable as E
 try:
   cwd=_cwd()
   s("clear")
+  print(__file__)
   print("\nWelcome to the Overlord Installer!\n")
   n=input("Project Name: ")
   print(f"\ncreating project: {n}...")
