@@ -8,9 +8,8 @@ Overlord is a Full Stack Framework for developing JavaScript & Python based Web 
 
 [Watch a 2 minute video tutorial](www.easter.company/documentation/overlord?index=0&autoplay=true)
 
-[Read the more detailed documentation](www.easter.company/documentation/overlord?index=0)
-
-If you are familiar with Overlord and interested in deepening you're knowledge of **infrastructure, ci/cd & pipeline** you should continue reading onto the E-Panel section of this document.
+If you are familiar with Overlord and interested in deepening you're knowledge of **infrastructure, ci/cd & pipeline**
+you should continue onto reading the E-Panel section of this document or [Read the more detailed documentation here.](www.easter.company/documentation/overlord?index=0)
 
 ### Install Overlord (Linux & Mac)
 
