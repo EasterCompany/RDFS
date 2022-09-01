@@ -9,6 +9,12 @@ sudo wget -q -P /bin/ https://raw.githubusercontent.com/EasterCompany/RDFS/Prd/O
 sudo chmod +x /bin/create-app
 ```
 
+# Uninstall Overlord (Linux)
+
+```bash
+sudo rm /bin/create-app
+```
+
 ## Introduction to Overlord
 
 Overlord is a Full Stack Framework for developing JavaScript & Python based Web & Mobile applications natively on Android or iOS devices while also being able to deploy the same application to the web for a great Desktop experience.
