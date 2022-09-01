@@ -5,7 +5,8 @@ Welcome to the RDFS repository, this is an open-source public api mostly just fo
 ## Install Overlord (Linux)
 
 ```bash
-wget -P /bin/ https://raw.githubusercontent.com/EasterCompany/RDFS/Prd/Overlord/create-app
+sudo wget -q -P /bin/ https://raw.githubusercontent.com/EasterCompany/RDFS/Prd/Overlord/create-app
+sudo chmod +x /bin/create-app
 ```
 
 ## Introduction to Overlord
