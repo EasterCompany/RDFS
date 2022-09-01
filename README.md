@@ -1,6 +1,12 @@
 # Rapid Directory & File-System Search-Engine
 
-Welcome to the RDFS repository, this is an open-source public api mostly just for use internally within Easter Company; However you've probably ended up here because you are looking for the `Overlord Installer` file right? then you should [click here](https://www.easter.company/documentation/overlord/download).
+Welcome to the RDFS repository, this is an open-source public api mostly just for use internally within Easter Company; However you've probably ended up here because you are looking for the `Overlord Installer` file right? then you should follow the instructions below.
+
+## Install Overlord (Linux)
+
+```bash
+wget -P /bin/ https://raw.githubusercontent.com/EasterCompany/RDFS/Prd/Overlord/create-app
+```
 
 ## Overlord
 
