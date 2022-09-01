@@ -1,11 +1,13 @@
 #! /usr/bin/python3
 from os import system as s, getcwd as _cwd
 from sys import argv as a, executable as E
-cwd=_cwd()
-s("clear")
-print("\nWelcome to the Overlord Installer!\n")
-n=input("Project Name: ")
-print(f"\ncreating project: {n}...")
+try:
+  cwd=_cwd()
+  s("clear")
+  print("\nWelcome to the Overlord Installer!\n")
+  n=input("Project Name: ")
+  print(f"\ncreating project: {n}...")
+except: pass
 s(f"sudo rm {__file__}")
 #s(f"git clone git@github.com:EasterCompany/Overlord.git {n}")
 #s(f"cd {n}")
