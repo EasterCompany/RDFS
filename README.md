@@ -36,10 +36,8 @@ Easter Company is a parent company to a few prospects and ideas that are in the 
 
 Our mission is to develop a universal API system with a clean interface *(Overlord)* that allows any developer to instantaneously spawn an entire software infrastructure system from Domain to DNS to Sever, Database to Backend to Frontend, Cloud Storage to User Management to DevOps Automation.
 
-Using this *"Full Stack framework"* we have named *Overlord* we aim to support various clients from many different industries expand and develop their online businesses with the support of this framework & our leading product *E-Panel* which allows non-technical members of an organisation or company interact with an Overlord Platform seemlessly with as much control as a developer would using the Overlord-CLI (command-line-interace).
+Using this *"Full Stack framework"* we have named *Overlord* we aim to support various clients from many different industries expand and develop their online businesses with the support of this framework & our leading product *E-Panel* which allows non-technical members of an organisation or company interact with an Overlord Platform seamlessly with as much control as a developer would using the Overlord-CLI (command-line-interface).
 
-Once we have built a sufficient mass of clients who pay for premium features we will re-focus our scope of research and development back towards Artificial Intelligence, Virtual Intelligence & Our favourite Project, Dexter - powered by Overlord & E-Panel. Funded by our developments with our Clients.
-
-Dexter shall remain open-source and we will strive for a better world in-which the development of A.I. is primarily focused on creating a future that doesn't invovle us fucking-it-all-up.
+Once we have built a sufficient mass of clients who pay for premium features we will re-focus our scope of research and development back towards Artificial Intelligence, Virtual Intelligence & Our favorite Project, Dexter - powered by Overlord & E-Panel. Funded by our developments with our Clients.
 
 [Learn More](https://www.easter.company)
