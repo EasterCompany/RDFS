@@ -2,19 +2,6 @@
 
 Welcome to the RDFS repository, this is an open-source public api mostly just for use internally within Easter Company; However you've probably ended up here because you are looking for the `Overlord Installer` file right? then you should follow the instructions below.
 
-## Install Overlord (Linux)
-
-```bash
-sudo wget -P /bin/ https://raw.githubusercontent.com/EasterCompany/RDFS/Prd/Overlord/create-app
-sudo chmod +x /bin/create-app
-```
-
-## Uninstall Overlord (Linux)
-
-```bash
-sudo rm /bin/create-app
-```
-
 ## Introduction to Overlord
 
 Overlord is a Full Stack Framework for developing JavaScript & Python based Web & Mobile applications natively on Android or iOS devices while also being able to deploy the same application to the web for a great Desktop experience.
@@ -24,6 +11,19 @@ Overlord is a Full Stack Framework for developing JavaScript & Python based Web 
 [Read the more detailed documentation](www.easter.company/documentation/overlord?index=0)
 
 If you are familiar with Overlord and interested in deepening you're knowledge of **infrastructure, ci/cd & pipeline** you should continue reading onto the E-Panel section of this document.
+
+### Install Overlord (Linux)
+
+```bash
+sudo wget -P /bin/ https://raw.githubusercontent.com/EasterCompany/RDFS/Prd/Overlord/create-app
+sudo chmod +x /bin/create-app
+```
+
+### Uninstall Overlord (Linux)
+
+```bash
+sudo rm /bin/create-app
+```
 
 ## Introduction to E-Panel
 
