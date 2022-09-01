@@ -8,7 +8,7 @@ Welcome to the RDFS repository, this is an open-source public api mostly just fo
 wget -P /bin/ https://raw.githubusercontent.com/EasterCompany/RDFS/Prd/Overlord/create-app
 ```
 
-## Overlord
+## Introduction to Overlord
 
 Overlord is a Full Stack Framework for developing JavaScript & Python based Web & Mobile applications natively on Android or iOS devices while also being able to deploy the same application to the web for a great Desktop experience.
 
@@ -18,7 +18,7 @@ Overlord is a Full Stack Framework for developing JavaScript & Python based Web 
 
 If you are familiar with Overlord and interested in deepening you're knowledge of **infrastructure, ci/cd & pipeline** you should continue reading onto the E-Panel section of this document.
 
-## E-Panel
+## Introduction to E-Panel
 
 E-Panel is a service provided by Easter Company to host, maintain, edit & content manage your Overlord-Server & Overlord-Clients. Most services are provided free of charge to Easter Company account holders so you should register now while the offer lasts (early-access users will maintain some of their free benefits after the early-acess period expires)
 
@@ -36,7 +36,7 @@ If you are familiar with E-Panel you should continue to logging in here:
 
 [E-Panel Home & Login Page](https://www.easter.company/e-panel)
 
-## Easter Company
+## Introduction to Easter Company
 
 Easter Company is a parent company to a few prospects and ideas that are in the making, although our core foundation is research & development of Web & A.I. Technologies.
 
