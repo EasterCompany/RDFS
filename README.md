@@ -6,7 +6,7 @@ Welcome to the RDFS repository, this is an open-source repository used mostly fo
 
 Overlord is a Full Stack Framework for developing JavaScript & Python based Web & Mobile applications natively on Android or iOS devices while also being able to deploy the same application to the web for a great Desktop experience, you can [Watch a 2 minute introduction video here.](www.easter.company/documentation/overlord?index=0&autoplay=true)
 
-If you are familiar with Overlord and interested in deepening you're knowledge of **infrastructure, ci/cd & pipeline**
+If you are familiar with Overlord and interested in deepening you're knowledge of **infrastructure, CI/CD & Pipelines**
 you should continue onto reading the E-Panel section of this document or [Read more detailed documentation here.](www.easter.company/documentation/overlord?index=0)
 
 ### Install Overlord (Linux & Mac)
