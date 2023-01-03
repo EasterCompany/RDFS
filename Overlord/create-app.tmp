@@ -13,7 +13,7 @@ try:
   if not is_p10:
     s(f"cd {n} && rm -rf .git")
     print(f"""
-  ************************ ATTENTION ************************
+  ************************* ATTENTION *************************
   Overlord only supports Python 3.10 or greater and
   it looks like your system default at '/usr/bin/python3'
   is running on version '{sys.version_info[0]}.{sys.version_info[1]}'
@@ -27,7 +27,7 @@ try:
 
   you can replace 'python3.10' with whatever version you wish
   to use as long as it's a greater version
-  ***********************************************************
+  *************************************************************
   """)
   else:
     s(f"cd {n} && rm -rf .git && {sys.executable} core.py tools install")
