@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "e_cuisine",
+    "slug": "e_cuisine",
+    "version": "0.0.0",
+    "platforms": ["ios", "android", "web"],
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "scheme": "e_cuisine",
+    "updates": {
+      "enabled": false,
+      "fallbackToCacheTimeout": 999
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "notification": {
+      "androidMode": "collapse",
+      "androidCollapsedTitle": "e_cuisine"
+    },
+    "ios": {
+      "bundleIdentifier": "com.eastercompany.e_cuisine",
+      "buildNumber": "1.0.0",
+      "supportsTablet": true,
+      "requireFullScreen": false
+    },
+    "android": {
+      "package": "com.eastercompany.e_cuisine",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
