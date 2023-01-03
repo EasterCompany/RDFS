@@ -14,4 +14,4 @@ try:
   print(f"Enter the directory using 'cd {n}' and enter './o' to open the Overlord-CLI")
 except:
   print("\n\nSorry, a fatal error was encountered.\nAborting Installation process...\n\n")
-s(f"sudo rm {__file__}")
+s(f"rm {__file__}")
