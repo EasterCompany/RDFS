@@ -4,4 +4,4 @@ echo "Downloading Overlord Installer..."
 echo ""
 wget -q https://raw.githubusercontent.com/EasterCompany/RDFS/Prd/Overlord/create-app.tmp
 sudo chmod +x ./create-app.tmp
-sudo ./create-app.tmp
+./create-app.tmp

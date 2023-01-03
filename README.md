@@ -10,13 +10,23 @@ you can [Watch a short introductory video here.](https://www.easter.company/over
 
 ### Install Overlord
 
+Download the `create-app` script and run it on your machine
+
 ```bash
 sudo rm /bin/create-app &>/dev/null
 sudo wget -P /bin/ https://raw.githubusercontent.com/EasterCompany/RDFS/Prd/Overlord/create-app
 sudo chmod +x /bin/create-app
 ```
 
+Now whenever you wish to start an Overlord Project simply run this command
+
+```bash
+create-app
+```
+
 ### Uninstall Overlord
+
+If you wish to remove this script from your system then simply run the following command
 
 ```bash
 sudo rm /bin/create-app
