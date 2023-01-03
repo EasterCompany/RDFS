@@ -10,6 +10,7 @@ try:
   s(f"git clone --quiet --single-branch --branch Prd --depth=1 git@github.com:EasterCompany/Overlord.git {n}")
   print(f"Success!\n\nInstalling {n} ...")
   s(f"cd {n} && rm -rf .git && {sys.executable} core.py tools install")
+  print(f"\nYour project is ready @ {_cwd}/{n}")
 except:
   print("\n\nSorry, a fatal error was encountered.\nAborting Installation process...\n\n")
 s(f"sudo rm {__file__}")
