@@ -30,7 +30,7 @@ try:
   *************************************************************
   """)
   else:
-    print("Installing {n} ...")
+    print(f"Installing {n} ...")
     s(f"cd {n} && rm -rf .git && {sys.executable} core.py tools install")
     print(f"Your project is ready @ {cwd}/{n}")
     print(f"Enter the directory using 'cd {n}' and then\nenter './o' to open the Overlord-CLI")
