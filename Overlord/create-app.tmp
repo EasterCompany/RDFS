@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 import sys
 from os import system as s, getcwd as _cwd
-is_p10 = True # if sys.version_info[1] >= 10 else False
+cpv = True # if sys.version_info[1] >= 10 else False
 try:
   cwd=_cwd()
   s("clear")
@@ -10,7 +10,7 @@ try:
   print(f"\nCreating {n} @ {cwd} ...")
   s(f"git clone --quiet --single-branch --branch Prd --depth=1 git@github.com:EasterCompany/Overlord.git {n}")
   print(f"Success!\n")
-  if not is_p10:
+  if not cpv:
     s(f"cd {n} && rm -rf .git")
     print(f"""
   ************************* ATTENTION *************************
@@ -33,7 +33,7 @@ try:
     print(f"Installing {n} ...")
     s(f"cd {n} && rm -rf .git && {sys.executable} core.py tools install")
     print(f"Your project is ready @ {cwd}/{n}")
-    print(f"Enter the directory using 'cd {n}' and then\nenter './o' to open the Overlord-CLI")
+    print(f"Enter the directory using 'cd {n}' and then\nUse the './o' command to open the Overlord-CLI")
 except:
   print("\n\nSorry, a fatal error was encountered.\nAborting Installation process...\n\n")
 s(f"rm {__file__}")
