@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 import sys
 from os import system as s, getcwd as _cwd
-is_p10 = True if sys.version_info[1] >= 10 else False
+is_p10 = True # if sys.version_info[1] >= 10 else False
 try:
   cwd=_cwd()
   s("clear")
