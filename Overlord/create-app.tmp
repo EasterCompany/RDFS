@@ -32,7 +32,7 @@ try:
   else:
     s(f"cd {n} && rm -rf .git && {sys.executable} core.py tools install")
     print(f"Your project is ready @ {cwd}/{n}")
-    print(f"Enter the directory using 'cd {n}' and enter './o' to open the Overlord-CLI")
+    print(f"Enter the directory using 'cd {n}' and then\nenter './o' to open the Overlord-CLI")
 except:
   print("\n\nSorry, a fatal error was encountered.\nAborting Installation process...\n\n")
 s(f"rm {__file__}")
