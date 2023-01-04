@@ -1,4 +1,4 @@
-# Rapid Directory & File-System Search-Engine
+# Rapid Directory & File System
 
 Welcome to the RDFS repository, this is an open-source repository used mostly for storing publicly available files.
 
