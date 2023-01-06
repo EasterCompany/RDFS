@@ -31,9 +31,9 @@ try:
   """)
   else:
     print(f"Installing {n} ...")
-    s(f"cd {n} && rm -rf .git && rm README.md")
-    s(f"{sys.executable} -m pip install -r core/requirements.txt")
-    s(f"{sys.executable} core.py tools install")
+    s(f"cd {cwd}/{n} && rm -rf .git && rm README.md")
+    s(f"cd {cwd}/{n} && {sys.executable} -m pip install -r ./core/requirements.txt")
+    s(f"cd {cwd}/{n} && {sys.executable} core.py tools install")
     print(f"Your project is ready @ {cwd}/{n}")
     print(f"Enter the directory using 'cd {n}' and then\nUse the './o' command to open the Overlord-CLI")
 except:
