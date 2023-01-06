@@ -1,6 +1,7 @@
 # Rapid Directory & File System
 
-Welcome to the RDFS repository, this is an open-source repository used mostly for storing and distributing publicly available files.
+Welcome to the RDFS repository, this is an open-source repository used mostly for storing and distributing publicly
+available files.
 
 ## Introduction to Overlord
 
@@ -16,7 +17,6 @@ Download the `create-app` script and run it on your machine
 sudo rm /bin/create-app &>/dev/null
 sudo wget -P /bin/ https://raw.githubusercontent.com/EasterCompany/RDFS/Prd/Overlord/create-app
 sudo chmod +x /bin/create-app
-create-app
 ```
 
 Now whenever you wish to start an Overlord Project simply run the `create-app` command from your terminal.
@@ -29,19 +29,25 @@ If you wish to remove this script from your system then simply run the following
 sudo rm /bin/create-app
 ```
 
-### Install Overlord Without Sudo
+### Install Overlord (Without Sudo)
+
+Once you've run the lines below, you will need to exit your terminal and open it again. Then you will be able to use
+the `create-app` command from anywhere on your system.
 
 ```bash
-rm /home/$USER/create-app &>/dev/null
-wget -P /home/$USER https://raw.githubusercontent.com/EasterCompany/RDFS/Prd/Overlord/create-app
-chmod +x /home/$USER/create-app
-cd /home/$USER && ./create-app
+rm ~/create-app &>/dev/null
+wget -P ~/ https://raw.githubusercontent.com/EasterCompany/RDFS/Prd/Overlord/create-app
+mv ~/create-app ~/.create-app
+chmod +x ~/.create-app
+echo 'alias create-app="~/.create-app"' >> ~/.bashrc
 ```
 
-### Uninstall Overlord Without Sudo
+### Uninstall Overlord (Without Sudo)
+
+You will also want to remove the `create-app` alias from your `.bashrc` file located at `~/.bashrc`
 
 ```bash
-rm /home/$USER/create-app
+rm ~/.create-app
 ```
 
 For more information you can learn more at [www.easter.company](https://www.easter.company)
