@@ -52,12 +52,14 @@ try:
     s(f"{sys.executable} -m pip install -r ./core/requirements.txt")
     s(f"{sys.executable} -m pip install -r ./core/requirements.dev")
     s(f"{sys.executable} core.py tools install")
-    print(f"  ✅ Your Project Was Setup Successfully\n    @> {cwd}/{n}")
+    print(f"  ✅ Your Project Was Setup Successfully\n     @> {cwd}/{n}")
     print(
-      f"    Enter the directory using 'cd {n}' and then\n"
-      "    Use the `./o` command to open the Overlord-CLI\n"
-      "    Or use `python3 core.py tools install` to reinstall manually.\n"
+      f"     Enter the directory using 'cd {n}' and then\n"
+      "     Use the `./o` command to open the Overlord-CLI\n"
     )
+    chdir(cwd), rm(__file__)
+    chdir(f"{cwd}/{n}"), s("./o")
+    exit()
 
 except Exception as error:
   print("\n\nSorry, an unexpected fatal error was encountered.\nAborting Installation process...\n\n")
