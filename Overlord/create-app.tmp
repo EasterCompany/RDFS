@@ -1,18 +1,27 @@
 #! /usr/bin/python3
 import sys
-from os import system as s, getcwd as _cwd
+import shutil as sh
+from os import system as s, getcwd as _cwd, remove as rm, chdir
 cpv = True if sys.version_info[1] >= 8 else False
+cwd=_cwd()
+
 try:
-  cwd=_cwd()
   s("clear")
+
   print("\nWelcome to the Overlord Installer!\n")
   n=input("Project Name: ")
-  print(f"\nCreating {n} @ {cwd} ...")
-  s(f"git clone --quiet --single-branch --branch Prd --depth=1 git@github.com:EasterCompany/Overlord.git {n}")
-  print(f"Success!\n")
-  if not cpv:
-    s(f"cd {cwd}/{n} && rm -rf .git")
-    print(f"""
+  print(f"\n> Creating Project: {n} @ {cwd}")
+
+  print("  ⏳ Downloading Overlord     ", end="\r")
+
+  try:
+    s(f"git clone --quiet --single-branch --branch Prd --depth=1 git@github.com:EasterCompany/Overlord.git {n}")
+  except Exception as download_error:
+    print(f"\n\n{download_error}\n\n"), rm(__file__), exit()
+
+  print("  ✅ Successfully Downloaded  ")
+
+  if not cpv:print(f"""
   ************************* ATTENTION *************************
   Overlord only supports Python 3.10 or greater and
   it looks like your system default at '/usr/bin/python3'
@@ -29,13 +38,31 @@ try:
   to use as long as it's a greater version
   *************************************************************
   """)
+
   else:
-    print(f"Installing {n} ...")
-    s(f"cd {cwd}/{n} && rm README.md && rm SECURITY.md")
-    s(f"cd {cwd}/{n} && {sys.executable} -m pip install -r ./core/requirements.txt")
-    s(f"cd {cwd}/{n} && {sys.executable} core.py tools install")
-    print(f"Your project is ready @ {cwd}/{n}")
-    print(f"Enter the directory using 'cd {n}' and then\nUse the './o' command to open the Overlord-CLI")
-except:
-  print("\n\nSorry, a fatal error was encountered.\nAborting Installation process...\n\n")
-s(f"rm {__file__}")
+    print(f"\n> Installing Project: {n} @ {cwd}")
+
+    print(f"  ⏳ Cleaning Source Code", end="\r")
+    chdir(f"{cwd}/{n}")
+    sh.rmtree("./.git")
+    rm("./README.md")
+    rm("./SECURITY.md")
+    print(f"  ✅ Successfully Cleaned Source Code")
+
+    s(f"{sys.executable} -m pip install -r ./core/requirements.txt")
+    s(f"{sys.executable} -m pip install -r ./core/requirements.dev")
+    s(f"{sys.executable} core.py tools install")
+    print(f"  ✅ Your Project Was Setup Successfully\n    @> {cwd}/{n}")
+    print(
+      f"    Enter the directory using 'cd {n}' and then\n"
+      "    Use the `./o` command to open the Overlord-CLI\n"
+      "    Or use `python3 core.py tools install` to reinstall manually.\n"
+    )
+
+except Exception as error:
+  print("\n\nSorry, an unexpected fatal error was encountered.\nAborting Installation process...\n\n")
+  print(error)
+  print('\n\n')
+
+chdir(cwd)
+rm(__file__)
