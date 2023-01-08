@@ -105,8 +105,9 @@ try:
       index = pip_install.expect(['sudo', 'pass', 'password', pexpect.EOF, pexpect.TIMEOUT])
       if index <= 2:
         pip_install.write(sudo_pass)
-    except Exception:
-      pass
+    except Exception as pip_install_error:
+      print(pip_install_error)
+      exit()
 
     pip_status = cmd(f"{sys.executable} -m pip")
     if "No module named pip" not in str(pip_status.stderr):
