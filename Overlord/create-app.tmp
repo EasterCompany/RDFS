@@ -105,15 +105,17 @@ try:
     print("\n> Installing Package Installer for Python (PIP)")
     print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
 
-    pip_install = pexpect.spawn("sudo apt-get install python3-pip").expect('password').send(sudo_pass)
-    #pip_install.expect('[sudo] password')
-    #pip_install.sendline(sudo_pass)
+    try:
+      pip_install = pexpect.spawn("sudo apt-get install python3-pip", encoding='utf-8', echo=False)
+      index = pip_install.expect(['sudo', 'pass', 'password', pexpect.EOF, pexpect.TIMEOUT])
+      if index <= 2:
+        pip_install.write(sudo_pass)
+    except Exception:
+      pass
 
     pip_status = cmd(f"{sys.executable} -m pip")
-
     if "No module named pip" not in str(pip_status.stderr):
       print("  \33[1;32m✅ Successfully Installed          \33[0m")
-
     else:
       print("  \33[1;31m⚠️ Failed to Install               \33[0m\n")
       print(
