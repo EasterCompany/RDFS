@@ -77,12 +77,12 @@ try:
 
   # Check if pip is available
   pip_status = cmd(f"{sys.executable} -m pip")
-  if "No module named pip" in pip_status.stderr:
+  if "No module named pip" in str(pip_status.stderr):
     print("> Installing Package Installer for Python (PIP)")
     print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
     cmd("sudo apt-get install python3-pip")
     pip_status = cmd(f"{sys.executable} -m pip")
-    if "No module named pip" not in pip_status.stderr:
+    if "No module named pip" not in str(pip_status.stderr):
       print("  \33[1;32m✅ Successfully Installed          \33[0m")
     else:
       print("  \33[1;31m⚠️ Failed to Install\33[0m\n")
