@@ -3,6 +3,7 @@ import sys
 import atexit
 import shutil
 import getpass
+import pathlib
 import subprocess
 from os import system as s, getcwd as _cwd, remove as rm, chdir
 from os.path import exists, abspath
@@ -12,6 +13,7 @@ cwd=_cwd()
 n=None
 install_success = False
 file_path = abspath(__file__)
+sudo_pass = None
 
 
 def cmd(command, path=cwd):
@@ -45,8 +47,18 @@ try:
   print("\nWelcome to the Overlord Installer!\n")
   n=input("Project Name: ")
   print(f"\n> Creating Project: {n} @ {cwd}")
+  p_dir = f"{cwd}/{n}"
 
-  # Download Overlord from `Prd` branch
+  # Check if the directory already exists
+  if exists(p_dir):
+    print(
+      f"  \33[1;31m⚠️ Directory with name '{n}' @ '{cwd}'   \n"
+      "     already exists. Please chose a unique name.\33[0m\n"
+    )
+    atexit.unregister(cleanup)
+    exit()
+
+  # Download from `Prd` branch
   print("  \33[5;33m🔶\33[0m Downloading Overlord     ", end="\r")
   try:
     s(f"git clone --quiet --single-branch --branch Prd --depth=1 git@github.com:EasterCompany/Overlord.git {n}")
@@ -57,7 +69,7 @@ try:
   # Remove development artifacts
   print(f"\n> Installing Project: {n} @ {cwd}")
   print(f"  \33[5;33m🔶\33[0m Cleaning Source Code", end="\r")
-  chdir(f"{cwd}/{n}")
+  chdir(p_dir)
   shutil.rmtree("./.git")
   rm("./README.md")
   rm("./SECURITY.md")
@@ -120,25 +132,69 @@ try:
       exit()
 
   else:
-    print("  \33[1;32m✅ Python3-pip is Installed \33[0m\n")
+    print("  \33[1;32m✅ Python3-pip is Installed \33[0m")
 
-  p_dir = f"{cwd}/{n}"
+  # Set nvm installation requirement
+  install_nvm = False
+
+  # Check if node is available
+  node_status = cmd("node -v")
+  if len(node_status.stderr) > 0 and len(node_status.stdout) == 0:
+    if sudo_pass is None:
+      print("\n> Root Access Required to Install Dependencies")
+      sudo_pass = getpass.getpass("  [sudo] Enter Password: ")
+    print("\n> Installing Node")
+    print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
+    cmd_status = cmd(f"echo {sudo_pass} | sudo -S apt-get install -y nodejs")
+    print("  \33[1;32m✅ Successfully Installed          \33[0m")
+
+  # Check if npm is available
+  npm_status = cmd("npm -v")
+  if len(npm_status.stderr) > 0 and len(npm_status.stdout) == 0:
+    if sudo_pass is None:
+      print("\n> Root Access Required to Install Dependencies")
+      sudo_pass = getpass.getpass("  [sudo] Enter Password: ")
+    print("\n> Installing NPM")
+    print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
+    cmd_status = cmd(f"echo {sudo_pass} | sudo -S apt-get install -y npm")
+    print("  \33[1;32m✅ Successfully Installed          \33[0m")
+
+  # Verify node & npm were installed
+  print("\n> Verifying Node & NPM")
+  # Check if npm is available
+  npm_status = cmd("npm -v")
+  if len(npm_status.stderr) > 0 and len(npm_status.stdout) == 0:
+    print("  \33[1;31m❌ Failed to Verify NPM\33[0m")
+  else:
+    print("  \33[1;32m✅ Verified NPM          \33[0m")
+  # Check if node is available
+  node_status = cmd("node -v")
+  if len(node_status.stderr) > 0 and len(npm_status.stdout) == 0:
+    print("  \33[1;31m❌ Failed to Verify Node\33[0m")
+  else:
+    print("  \33[1;32m✅ Verified Node          \33[0m")
+
+  # Declare installation a success at this point
   install_success = True
 
-  print("> Installing Overlord Requirements")
+  # Install essential requirements
+  print("\n> Installing Overlord Requirements")
   print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
   cmd(f"{sys.executable} -m pip install --no-warn-script-location -r ./core/requirements.txt", path=p_dir)
   print("  \33[1;32m✅ Successfully Installed          \33[0m")
 
+  # Install developer requirements
   print("\n> Installing Overlord Dev Requirements")
   print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
   cmd(f"{sys.executable} -m pip install --no-warn-script-location -r ./core/requirements.dev", path=p_dir)
   print("  \33[1;32m✅ Successfully Installed          \33[0m")
 
+  # Install project
   print("\n> Installing Overlord")
   print("  \33[5;33m🔶\33[0m Installing", end="\r")
   cmd(f"{sys.executable} core.py tools install", path=p_dir)
 
+  # Declare success with no warnings
   if exists(f"{cwd}/{n}/o"):
     print("  \33[1;32m✅ Successfully Installed          \33[0m")
     print(f"  \33[1;32m✅ Your Project Was Setup Successfully   \n      @ {p_dir}\33[0m\n")
@@ -147,12 +203,13 @@ try:
       "  Use the \33[33m./o\33[0m command to open the Overlord-CLI\n"
     )
 
+  # Declare success with basic warning
   elif exists(f"{cwd}/{n}"):
     print(f"  \33[1;31m⚠️ Your Project Cannot be Installed    \n      @ {p_dir}\33[0m\n")
     print(
       f"     Enter the directory using 'cd {n}' and then run:\n\n"
       "     >> python3 core.py tools install\n\n"
-      "     to complete the installation process.\n"
+      "     to complete the installation process manually.\n"
     )
 
 except Exception as error:
