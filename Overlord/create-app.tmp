@@ -2,6 +2,8 @@
 import sys
 import atexit
 import shutil
+import pexpect
+import getpass
 import subprocess
 from os import system as s, getcwd as _cwd, remove as rm, chdir
 from os.path import exists
@@ -22,10 +24,13 @@ def cmd(command, path=cwd):
 
 
 def cleanup_and_exit():
-  if n is not None:
-    if exists(f"{cwd}/{n}"):
-      shutil.rmtree(f"{cwd}/{n}")
-  rm(__file__)
+  try:
+    if n is not None:
+      if exists(f"{cwd}/{n}"):
+        shutil.rmtree(f"{cwd}/{n}")
+    rm(__file__)
+  except:
+    pass
   return exit()
 
 
@@ -89,14 +94,21 @@ try:
   # Check if pip is available
   pip_status = cmd(f"{sys.executable} -m pip")
   if "No module named pip" in str(pip_status.stderr):
+
     print("> Root Access Required to Install Dependencies")
-    cmd("sudo -l")
+    sudo_pass = getpass.getpass("  [sudo] password:")
+
     print("\n> Installing Package Installer for Python (PIP)")
     print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
-    cmd("sudo apt-get install python3-pip")
+    pip_install = pexpect.spawn("sudo apt-get install python3-pip")
+    pip_install.expect('[sudo] password')
+    pip_install.sendline(sudo_pass)
+
     pip_status = cmd(f"{sys.executable} -m pip")
+
     if "No module named pip" not in str(pip_status.stderr):
       print("  \33[1;32m✅ Successfully Installed          \33[0m")
+
     else:
       print("  \33[1;31m⚠️ Failed to Install               \33[0m\n")
       print(
@@ -108,6 +120,7 @@ try:
         "  Once you have installed pip run the `create-app` command again.\33[0m\n"
       )
       cleanup_and_exit()
+
   else:
     print(str(pip_status.stderr))
     cleanup_and_exit()
