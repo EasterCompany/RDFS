@@ -79,6 +79,7 @@ try:
   pip_status = cmd(f"{sys.executable} -m pip")
   if "No module named pip" in str(pip_status.stderr):
     print("> Installing Package Installer for Python (PIP)")
+    cmd("sudo")
     print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
     cmd("sudo apt-get install python3-pip")
     pip_status = cmd(f"{sys.executable} -m pip")
