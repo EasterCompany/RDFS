@@ -87,8 +87,7 @@ try:
                 https://www.python.org/downloads/
 
   *************************************************************
-  """)
-    exit()
+  """), exit()
 
   # Check if pip is available
   pip_status = cmd(f"{sys.executable} -m pip")
