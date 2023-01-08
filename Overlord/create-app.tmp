@@ -104,9 +104,10 @@ try:
 
     print("\n> Installing Package Installer for Python (PIP)")
     print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
-    pip_install = pexpect.spawn("sudo apt-get install python3-pip")
-    pip_install.expect('[sudo] password')
-    pip_install.sendline(sudo_pass)
+
+    pip_install = pexpect.spawn("sudo apt-get install python3-pip").expect('password').send(sudo_pass)
+    #pip_install.expect('[sudo] password')
+    #pip_install.sendline(sudo_pass)
 
     pip_status = cmd(f"{sys.executable} -m pip")
 
