@@ -99,16 +99,9 @@ try:
 
     print("\n> Installing Package Installer for Python (PIP)")
     print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
-
-    try:
-      pip_install = pexpect.spawn("sudo apt-get install python3-pip", encoding='utf-8', echo=False)
-      index = pip_install.expect(['sudo', 'pass', 'password', pexpect.EOF, pexpect.TIMEOUT])
-      pip_install.write(sudo_pass)
-      print(pip_install.read())
-    except Exception:
-      pass
-
+    cmd_status = cmd(f"echo {sudo_pass} | sudo -S apt-get install -y python3-pip")
     pip_status = cmd(f"{sys.executable} -m pip")
+
     if "No module named pip" not in str(pip_status.stderr):
       print("  \33[1;32m✅ Successfully Installed          \33[0m")
     else:
@@ -126,8 +119,8 @@ try:
   else:
     exit()
 
-  s(f"{sys.executable} -m pip install -r ./core/requirements.txt")
-  s(f"{sys.executable} -m pip install -r ./core/requirements.dev")
+  s(f"{sys.executable} -m pip install -r --no-warn-script-location ./core/requirements.txt")
+  s(f"{sys.executable} -m pip install -r --no-warn-script-location ./core/requirements.dev")
   s(f"{sys.executable} core.py tools install")
 
   if exists(f"{cwd}/{n}/o"):
