@@ -29,9 +29,13 @@ def cleanup_and_exit():
       if exists(f"{cwd}/{n}"):
         shutil.rmtree(f"{cwd}/{n}")
     rm(__file__)
+    exit()
   except:
     pass
-  return exit()
+  try:
+    exit()
+  except:
+    pass
 
 
 atexit.register(cleanup_and_exit)
@@ -96,7 +100,7 @@ try:
   if "No module named pip" in str(pip_status.stderr):
 
     print("> Root Access Required to Install Dependencies")
-    sudo_pass = getpass.getpass("  [sudo] password:")
+    sudo_pass = getpass.getpass("  [sudo] password: ")
 
     print("\n> Installing Package Installer for Python (PIP)")
     print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
