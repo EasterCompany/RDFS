@@ -1,5 +1,6 @@
 #! /usr/bin/python3
 import sys
+import atexit
 import shutil
 import subprocess
 from os import system as s, getcwd as _cwd, remove as rm, chdir
@@ -26,6 +27,9 @@ def cleanup_and_exit():
       shutil.rmtree(f"{cwd}/{n}")
   rm(__file__)
   return exit()
+
+
+atexit.register(cleanup_and_exit)
 
 
 try:
