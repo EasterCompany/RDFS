@@ -16,7 +16,7 @@ def cmd(command, path=cwd):
     cwd=path,
     capture_output=True,
     encoding='utf-8'
-  )
+  ).stdout
 
 
 try:
