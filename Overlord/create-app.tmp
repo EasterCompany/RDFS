@@ -134,14 +134,14 @@ try:
 
   if exists(f"{cwd}/{n}/o"):
     print("  \33[1;32m✅ Successfully Installed          \33[0m")
-    print(f"\33[1;32m✅ Your Project Was Setup Successfully\33[0m\n     @> {cwd}/{n}\n")
+    print(f"  \33[1;32m✅ Your Project Was Setup Successfully   \n      @ {cwd}/{n}\33[0m\n")
     print(
       f"  Enter the directory using \33[33mcd {n}\33[0m and then\n"
       "  Use the \33[33m./o\33[0m command to open the Overlord-CLI\n"
     )
 
   elif exists(f"{cwd}/{n}"):
-    print(f"  \33[1;31m⚠️ Your Project Cannot be Installed    \n     @> {cwd}/{n}\33[0m\n")
+    print(f"  \33[1;31m⚠️ Your Project Cannot be Installed    \n      @ {cwd}/{n}\33[0m\n")
     print(
       f"     Enter the directory using 'cd {n}' and then run:\n\n"
       "     >> python3 core.py tools install\n\n"
