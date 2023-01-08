@@ -23,22 +23,17 @@ def cmd(command, path=cwd):
   )
 
 
-def cleanup_and_exit():
+def cleanup():
   try:
     if n is not None:
       if exists(f"{cwd}/{n}"):
         shutil.rmtree(f"{cwd}/{n}")
     rm(__file__)
-    exit()
-  except:
-    pass
-  try:
-    exit()
-  except:
+  except Exception:
     pass
 
 
-atexit.register(cleanup_and_exit)
+atexit.register(cleanup)
 
 
 try:
@@ -93,7 +88,8 @@ try:
 
   *************************************************************
   """)
-    cleanup_and_exit()
+    cleanup()
+    exit()
 
   # Check if pip is available
   pip_status = cmd(f"{sys.executable} -m pip")
@@ -126,11 +122,13 @@ try:
         "  >> sudo apt-get install python3-pip\n\n"
         "  Once you have installed pip run the `create-app` command again.\33[0m\n"
       )
-      cleanup_and_exit()
+      cleanup()
+      exit()
 
   else:
     print(str(pip_status.stderr))
-    cleanup_and_exit()
+    cleanup()
+    exit()
 
   s(f"{sys.executable} -m pip install -r ./core/requirements.txt")
   s(f"{sys.executable} -m pip install -r ./core/requirements.dev")
@@ -156,4 +154,4 @@ except Exception as error:
   print(error)
   print('\n\n')
 
-cleanup_and_exit()
+cleanup()
