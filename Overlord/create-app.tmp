@@ -2,7 +2,6 @@
 import sys
 import atexit
 import shutil
-import pexpect
 import getpass
 import subprocess
 from os import system as s, getcwd as _cwd, remove as rm, chdir
@@ -89,7 +88,9 @@ try:
                 https://www.python.org/downloads/
 
   *************************************************************
-  """), exit()
+  """)
+    install_success = True
+    exit()
 
   # Check if pip is available
   pip_status = cmd(f"{sys.executable} -m pip")
