@@ -5,12 +5,13 @@ import shutil
 import getpass
 import subprocess
 from os import system as s, getcwd as _cwd, remove as rm, chdir
-from os.path import exists
+from os.path import exists, abspath
 
 cpv = True if sys.version_info[1] >= 10 else False
 cwd=_cwd()
 n=None
 install_success = False
+file_path = abspath(__file__)
 
 
 def cmd(command, path=cwd):
@@ -26,10 +27,10 @@ def cmd(command, path=cwd):
 def cleanup():
   global install_success
   try:
-    if n is not None and not install_success:
-      if exists(f"{cwd}/{n}"):
+    rm(file_path)
+    if n is not None:
+      if exists(f"{cwd}/{n}") and not install_success:
         shutil.rmtree(f"{cwd}/{n}")
-    rm(__file__)
   except Exception:
     pass
 
