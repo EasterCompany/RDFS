@@ -95,7 +95,7 @@ try:
   if "No module named pip" in str(pip_status.stderr):
 
     print("> Root Access Required to Install Dependencies")
-    sudo_pass = getpass.getpass("  [sudo] password: ")
+    sudo_pass = getpass.getpass("  [sudo] Enter Password: ")
 
     print("\n> Installing Package Installer for Python (PIP)")
     print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
@@ -103,11 +103,12 @@ try:
     try:
       pip_install = pexpect.spawn("sudo apt-get install python3-pip", encoding='utf-8', echo=False)
       index = pip_install.expect(['sudo', 'pass', 'password', pexpect.EOF, pexpect.TIMEOUT])
-      if index <= 2:
-        pip_install.write(sudo_pass)
-    except Exception as pip_install_error:
-      print(pip_install_error)
-      exit()
+      pip_install.write(sudo_pass)
+      print(pip_install.logfile)
+      print(pip_install.exitstatus)
+      print(pip_install.stdout)
+    except Exception:
+      pass
 
     pip_status = cmd(f"{sys.executable} -m pip")
     if "No module named pip" not in str(pip_status.stderr):
