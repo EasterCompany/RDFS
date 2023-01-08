@@ -7,6 +7,7 @@ from os.path import exists
 
 cpv = True if sys.version_info[1] >= 10 else False
 cwd=_cwd()
+n=None
 
 
 def cmd(command, path=cwd):
@@ -17,6 +18,14 @@ def cmd(command, path=cwd):
     capture_output=True,
     encoding='utf-8'
   )
+
+
+def cleanup_and_exit():
+  if n is not None:
+    if exists(f"{cwd}/{n}"):
+      shutil.rmtree(f"{cwd}/{n}")
+  rm(__file__)
+  return exit()
 
 
 try:
@@ -71,15 +80,14 @@ try:
 
   *************************************************************
   """)
-    chdir(cwd)
-    rm(__file__)
-    exit()
+    cleanup_and_exit()
 
   # Check if pip is available
   pip_status = cmd(f"{sys.executable} -m pip")
   if "No module named pip" in str(pip_status.stderr):
-    print("> Installing Package Installer for Python (PIP)")
+    print("> Root Access Required to Install Dependencies")
     cmd("sudo")
+    print("\n> Installing Package Installer for Python (PIP)")
     print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
     cmd("sudo apt-get install python3-pip")
     pip_status = cmd(f"{sys.executable} -m pip")
@@ -95,16 +103,10 @@ try:
         "  >> sudo apt-get install python3-pip\n\n"
         "  Once you have installed pip run the `create-app` command again.\33[0m\n"
       )
-      shutil.rmtree(f"{cwd}/{n}")
-      chdir(cwd)
-      rm(__file__)
-      exit()
+      cleanup_and_exit()
   else:
     print(str(pip_status.stderr))
-    shutil.rmtree(f"{cwd}/{n}")
-    chdir(cwd)
-    rm(__file__)
-    exit()
+    cleanup_and_exit()
 
   s(f"{sys.executable} -m pip install -r ./core/requirements.txt")
   s(f"{sys.executable} -m pip install -r ./core/requirements.dev")
@@ -130,5 +132,4 @@ except Exception as error:
   print(error)
   print('\n\n')
 
-chdir(cwd)
-rm(__file__)
+cleanup_and_exit()
