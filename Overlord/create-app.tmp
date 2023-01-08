@@ -99,7 +99,7 @@ try:
       rm(__file__)
       exit()
   else:
-    print(pip_status)
+    print(str(pip_status.stderr))
     shutil.rmtree(f"{cwd}/{n}")
     chdir(cwd)
     rm(__file__)
