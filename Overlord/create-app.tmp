@@ -16,7 +16,7 @@ def cmd(command, path=cwd):
     cwd=path,
     capture_output=True,
     encoding='utf-8'
-  ).stdout
+  )
 
 
 try:
@@ -77,12 +77,12 @@ try:
 
   # Check if pip is available
   pip_status = cmd(f"{sys.executable} -m pip")
-  if pip_status == "/usr/bin/python3: No module named pip":
+  if pip_status.stderr == "/usr/bin/python3: No module named pip":
     print("> Installing Package Installer for Python (PIP)")
     print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
     cmd("sudo apt-get install python3-pip")
     pip_status = cmd(f"{sys.executable} -m pip")
-    if not pip_status == "/usr/bin/python3: No module named pip":
+    if not pip_status.stderr == "/usr/bin/python3: No module named pip":
       print("  \33[1;32m✅ Successfully Installed          \33[0m")
     else:
       print("  \33[1;31m⚠️ Failed to Install\33[0m\n")
