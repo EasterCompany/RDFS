@@ -11,6 +11,7 @@ from os.path import exists
 cpv = True if sys.version_info[1] >= 10 else False
 cwd=_cwd()
 n=None
+install_success = False
 
 
 def cmd(command, path=cwd):
@@ -23,9 +24,10 @@ def cmd(command, path=cwd):
   )
 
 
-def cleanup(end=False):
+def cleanup():
+  global install_success
   try:
-    if n is not None and not end:
+    if n is not None and not install_success:
       if exists(f"{cwd}/{n}"):
         shutil.rmtree(f"{cwd}/{n}")
     rm(__file__)
@@ -119,6 +121,7 @@ try:
     print("  \33[1;32m✅ Python3-pip is Installed \33[0m\n")
 
   p_dir = f"{cwd}/{n}"
+  install_success = True
 
   print("> Installing Overlord Requirements")
   print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
@@ -156,4 +159,4 @@ except Exception as error:
   print('\n\n')
   cleanup()
 
-cleanup(end=True)
+cleanup()
