@@ -118,15 +118,26 @@ try:
   else:
     print("  \33[1;32m✅ Python3-pip is Installed \33[0m\n")
 
-  s(f"{sys.executable} -m pip install --no-warn-script-location -r ./core/requirements.txt")
-  s(f"{sys.executable} -m pip install --no-warn-script-location -r ./core/requirements.dev")
-  s(f"{sys.executable} core.py tools install")
+  print("> Installing Overlord Requirements")
+  print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
+  cmd(f"{sys.executable} -m pip install --no-warn-script-location -r ./core/requirements.txt")
+  print("  \33[1;32m✅ Successfully Installed          \33[0m")
+
+  print("> Installing Overlord Dev Requirements")
+  print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
+  cmd(f"{sys.executable} -m pip install --no-warn-script-location -r ./core/requirements.dev")
+  print("  \33[1;32m✅ Successfully Installed          \33[0m")
+
+  print("> Installing Overlord")
+  print("  \33[5;33m🔶\33[0m Installing", end="\r")
+  cmd(f"{sys.executable} core.py tools install")
 
   if exists(f"{cwd}/{n}/o"):
-    print(f"  \33[1;32m✅ Your Project Was Setup Successfully\33[0m\n     @> {cwd}/{n}\n")
+    print("  \33[1;32m✅ Successfully Installed          \33[0m")
+    print(f"\33[1;32m✅ Your Project Was Setup Successfully\33[0m\n     @> {cwd}/{n}\n")
     print(
-      f"     Enter the directory using 'cd {n}' and then\n"
-      "     Use the `./o` command to open the Overlord-CLI\n"
+      f"  Enter the directory using \33[33mcd {n}\33[0m and then\n"
+      "  Use the \33[33m./o\33[0m command to open the Overlord-CLI\n"
     )
 
   elif exists(f"{cwd}/{n}"):
