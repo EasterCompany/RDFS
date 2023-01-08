@@ -98,7 +98,7 @@ try:
     if "No module named pip" not in str(pip_status.stderr):
       print("  \33[1;32m✅ Successfully Installed          \33[0m")
     else:
-      print("  \33[1;31m⚠️ Failed to Install\33[0m\n")
+      print("  \33[1;31m⚠️ Failed to Install               \33[0m\n")
       print(
         "  \33[1;31m[ERROR]"
         "  The installer failed to acquire `python3-pip` you will need to\n"
