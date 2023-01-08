@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 import sys
-import shutil as sh
+import shutil
+import subprocess
 from os import system as s, getcwd as _cwd, remove as rm, chdir
 from os.path import exists
 
@@ -10,28 +11,31 @@ cwd=_cwd()
 try:
   s("clear")
 
+  # Create project name
   print("\nWelcome to the Overlord Installer!\n")
   n=input("Project Name: ")
   print(f"\n> Creating Project: {n} @ {cwd}")
 
-  print("  ⏳ Downloading Overlord     ", end="\r")
-
+  # Download Overlord from `Prd` branch
+  print("  \33[5;33m🔶\33[0m Downloading Overlord     ", end="\r")
   try:
     s(f"git clone --quiet --single-branch --branch Prd --depth=1 git@github.com:EasterCompany/Overlord.git {n}")
   except Exception as download_error:
     print(f"\n\n{download_error}\n\n"), rm(__file__), exit()
+  print("  \33[1;32m✅ Successfully Downloaded  \33[0m")
 
-  print("  ✅ Successfully Downloaded  ")
-
+  # Remove development artifacts
   print(f"\n> Installing Project: {n} @ {cwd}")
-  print(f"  ⏳ Cleaning Source Code", end="\r")
+  print(f"  \33[5;33m🔶\33[0m Cleaning Source Code", end="\r")
   chdir(f"{cwd}/{n}")
-  sh.rmtree("./.git")
+  shutil.rmtree("./.git")
   rm("./README.md")
   rm("./SECURITY.md")
-  print(f"  ✅ Successfully Cleaned Source Code\n")
+  print(f"  \33[1;32m✅ Successfully Cleaned Source Code \33[0m\n")
 
-  if not cpv:print(f"""
+  # Exit & instruct manual installation if Python is less than 3.10
+  if not cpv:
+    print(f"""
   ************************* ATTENTION *************************
 
   Overlord only supports Python 3.10 or greater and
@@ -56,26 +60,53 @@ try:
 
   *************************************************************
   """)
+    chdir(cwd)
+    rm(__file__)
+    exit()
+
+  # Check if pip is available
+  pip_status = subprocess.run(f"{sys.executable} -m pip", shell=True, cwd=cwd, capture_output=True)
+  if pip_status == "/usr/bin/python3: No module named pip":
+    print("> Installing Package Installer for Python (PIP)")
+    print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
+    subprocess.run("sudo apt-get install python3-pip", shell=True, cwd=cwd, capture_output=True)
+    pip_status = subprocess.run(f"{sys.executable} -m pip", shell=True, cwd=cwd, capture_output=True)
+    if not pip_status == "/usr/bin/python3: No module named pip":
+      print("  \33[1;32m✅ Successfully Installed          \33[0m")
+    else:
+      print("  \33[1;31m⚠️ Failed to Install\33[0m\n")
+      print(
+        "  \33[1;31m[ERROR]"
+        "  The installer failed to acquire `python3-pip` you will need to\n"
+        "  manually install pip for your python installation.\n"
+        "  on most systems this can be done by running:\n\n"
+        "  >> sudo apt-get install python3-pip\n\n"
+        "  Once you have installed pip run the `create-app` command again.\33[0m\n"
+      )
+      shutil.rmtree(f"{cwd}/{n}")
+      chdir(cwd)
+      rm(__file__)
+      exit()
+
+  exit()
+  s(f"{sys.executable} -m pip install -r ./core/requirements.txt")
+  s(f"{sys.executable} -m pip install -r ./core/requirements.dev")
+  s(f"{sys.executable} core.py tools install")
+
+  if exists(f"{cwd}/{n}/o"):
+    print(f"  ✅ Your Project Was Setup Successfully\n     @> {cwd}/{n}\n")
+    print(
+      f"     Enter the directory using 'cd {n}' and then\n"
+      "     Use the `./o` command to open the Overlord-CLI\n"
+    )
 
   else:
-    s(f"{sys.executable} -m pip install -r ./core/requirements.txt")
-    s(f"{sys.executable} -m pip install -r ./core/requirements.dev")
-    s(f"{sys.executable} core.py tools install")
-
-    if exists(f"{cwd}/{n}/o"):
-      print(f"  ✅ Your Project Was Setup Successfully\n     @> {cwd}/{n}\n")
-      print(
-        f"     Enter the directory using 'cd {n}' and then\n"
-        "     Use the `./o` command to open the Overlord-CLI\n"
-      )
-
-    else:
-      print(f"  ⚠ Your Project Cannot be Installed\n     @> {cwd}/{n}\n")
-      print(
-        f"     Enter the directory using 'cd {n}' and then run:\n\n"
-        "     >> python3 core.py tools install\n\n"
-        "     to complete the installation process.\n"
-      )
+    print(f"  \33[1;31m⚠️ Your Project Cannot be Installed\33[0m\n     @> {cwd}/{n}\n")
+    print(
+      f"     Enter the directory using 'cd {n}' and then run:\n\n"
+      "     >> python3 core.py tools install\n\n"
+      "     to complete the installation process.\n"
+    )
 
 except Exception as error:
   print("\n\nSorry, an unexpected fatal error was encountered.\nAborting Installation process...\n\n")
