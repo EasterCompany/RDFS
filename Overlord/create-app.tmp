@@ -59,7 +59,7 @@ try:
   shutil.rmtree("./.git")
   rm("./README.md")
   rm("./SECURITY.md")
-  print(f"  \33[1;32m✅ Successfully Cleaned Source Code \33[0m\n")
+  print(f"  \33[1;32m✅ Successfully Cleaned Source Code \33[0m")
 
   # Exit & instruct manual installation if Python is less than 3.10
   if not cpv:
@@ -94,7 +94,7 @@ try:
   pip_status = cmd(f"{sys.executable} -m pip")
   if "No module named pip" in str(pip_status.stderr):
 
-    print("> Root Access Required to Install Dependencies")
+    print("\n> Root Access Required to Install Dependencies")
     sudo_pass = getpass.getpass("  [sudo] Enter Password: ")
 
     print("\n> Installing Package Installer for Python (PIP)")
@@ -117,14 +117,14 @@ try:
       exit()
 
   else:
-    exit()
+    print("  \33[1;32m✅ Python3-pip is Installed \33[0m\n")
 
   s(f"{sys.executable} -m pip install -r --no-warn-script-location ./core/requirements.txt")
   s(f"{sys.executable} -m pip install -r --no-warn-script-location ./core/requirements.dev")
   s(f"{sys.executable} core.py tools install")
 
   if exists(f"{cwd}/{n}/o"):
-    print(f"  ✅ Your Project Was Setup Successfully\n     @> {cwd}/{n}\n")
+    print(f"  \33[1;32m✅ Your Project Was Setup Successfully\33[0m\n     @> {cwd}/{n}\n")
     print(
       f"     Enter the directory using 'cd {n}' and then\n"
       "     Use the `./o` command to open the Overlord-CLI\n"
