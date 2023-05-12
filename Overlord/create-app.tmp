@@ -221,13 +221,13 @@ try:
   print("  \33[1;32m✅ Successfully Created Environment\33[0m")
 
   # Install essential requirements
-  print("\n> Installing Overlord Requirements")
+  print("\n> Installing Essential Requirements")
   print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
   cmd("./.env/bin/python -m pip install --no-warn-script-location -r ./core/requirements.txt", path=p_dir)
   print("  \33[1;32m✅ Successfully Installed          \33[0m")
 
   # Install developer requirements
-  print("\n> Installing Overlord Dev Requirements")
+  print("\n> Installing Developer Requirements")
   print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
   cmd(f"./.env/bin/python -m pip install --no-warn-script-location -r ./core/requirements.dev", path=p_dir)
   print("  \33[1;32m✅ Successfully Installed          \33[0m")
