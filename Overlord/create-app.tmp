@@ -107,10 +107,12 @@ try:
 
   # Check if pip is available
   pip_status = cmd(f"{sys.executable} -m pip")
+
   if "No module named pip" in str(pip_status.stderr):
 
-    print("\n> Root Access Required to Install Dependencies")
-    sudo_pass = getpass.getpass("  [sudo] Enter Password: ")
+    if sudo_pass is None:
+      print("\n> Root Access Required to Install Dependencies")
+      sudo_pass = getpass.getpass("  [sudo] Enter Password: ")
 
     print("\n> Installing Package Installer for Python (PIP)")
     print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
@@ -133,6 +135,38 @@ try:
 
   else:
     print("  \33[1;32m✅ Python3-pip is Installed \33[0m")
+
+  # Check if venv is available
+  venv_status = cmd(f"{sys.executable} -m venv")
+
+  if "No module named venv" in str(venv_status.stderr):
+    if sudo_pass is None:
+      print("\n> Root Access Required to Install Dependencies")
+      sudo_pass = getpass.getpass("  [sudo] Enter Password: ")
+
+    print("\n> Installing Python Package for Virtual Environments")
+    print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
+    cmd_status = cmd(f"echo {sudo_pass} | sudo -S apt-get install -y python3-venv")
+    venv_status = cmd(f"{sys.executable} -m venv")
+
+    if "No module named pip" not in str(venv_status.stderr):
+      print("  \33[1;32m✅ Successfully Installed          \33[0m")
+    else:
+      print("  \33[1;31m⚠️ Failed to Install               \33[0m\n")
+      print(
+        "  \33[1;31m[ERROR]"
+        "  The installer failed to acquire `python3-venv` you will need to\n"
+        "  manually install venv for your python installation.\n"
+        "  on most systems this can be done by running:\n\n"
+        "  >> sudo apt-get install python3-venv\n\n"
+        "  or\n\n"
+        "  >> python3 -m pip install venv\n\n"
+        "  Once you have installed venv run the `create-app` command again.\33[0m\n"
+      )
+      exit()
+
+  else:
+    print("  \33[1;32m✅ Python3-venv is Installed \33[0m")
 
   # Set nvm installation requirement
   install_nvm = False
@@ -161,12 +195,14 @@ try:
 
   # Verify node & npm were installed
   print("\n> Verifying Node & NPM")
+
   # Check if npm is available
   npm_status = cmd("npm -v")
   if len(npm_status.stderr) > 0 and len(npm_status.stdout) == 0:
     print("  \33[1;31m❌ Failed to Verify NPM\33[0m")
   else:
     print("  \33[1;32m✅ Verified NPM          \33[0m")
+
   # Check if node is available
   node_status = cmd("node -v")
   if len(node_status.stderr) > 0 and len(npm_status.stdout) == 0:
@@ -177,22 +213,38 @@ try:
   # Declare installation a success at this point
   install_success = True
 
+  # Create virtual environment
+  print("\n> Creating Virtual Environment")
+  print("  \33[5;33m🔶\33[0m Building Environment", end="\r")
+  cmd(f"{sys.executable} -m venv .env", path=p_dir)
+  cmd(f"source .env/bin/activate", path=p_dir)
+  print("  \33[1;32m✅ Successfully Created Environment\33[0m")
+
   # Install essential requirements
   print("\n> Installing Overlord Requirements")
   print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
-  cmd(f"{sys.executable} -m pip install --no-warn-script-location -r ./core/requirements.txt", path=p_dir)
+  cmd(
+    f"source .env/bin/activate && python -m pip install --no-warn-script-location -r ./core/requirements.txt",
+    path=p_dir
+  )
   print("  \33[1;32m✅ Successfully Installed          \33[0m")
 
   # Install developer requirements
   print("\n> Installing Overlord Dev Requirements")
   print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
-  cmd(f"{sys.executable} -m pip install --no-warn-script-location -r ./core/requirements.dev", path=p_dir)
+  cmd(
+    f"source .env/bin/activate && python -m pip install --no-warn-script-location -r ./core/requirements.dev",
+    path=p_dir
+  )
   print("  \33[1;32m✅ Successfully Installed          \33[0m")
 
   # Install project
   print("\n> Installing Overlord")
   print("  \33[5;33m🔶\33[0m Installing", end="\r")
-  cmd(f"{sys.executable} core.py tools install", path=p_dir)
+  cmd(
+    f"source .env/bin/activate && python core.py tools install",
+    path=p_dir
+  )
 
   # Declare success with no warnings
   if exists(f"{cwd}/{n}/o"):
