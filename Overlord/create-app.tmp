@@ -216,15 +216,18 @@ try:
   # Create virtual environment
   print("\n> Creating Virtual Environment")
   print("  \33[5;33m🔶\33[0m Building Environment", end="\r")
-  cmd(f"{sys.executable} -m venv .env", path=p_dir)
-  cmd(f"source .env/bin/activate", path=p_dir)
+  cmd(f"{sys.executable} -m venv {n}", path=p_dir)
+  cmd(f"mv {n} .env", path=p_dir)
   print("  \33[1;32m✅ Successfully Created Environment\33[0m")
 
   # Install essential requirements
   print("\n> Installing Overlord Requirements")
   print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
   cmd(
-    f"python -m pip install --no-warn-script-location -r ./core/requirements.txt",
+    [
+      "source .env/bin/activate",
+      "python -m pip install --no-warn-script-location -r ./core/requirements.txt",
+    ],
     path=p_dir
   )
   print("  \33[1;32m✅ Successfully Installed          \33[0m")
@@ -233,7 +236,10 @@ try:
   print("\n> Installing Overlord Dev Requirements")
   print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
   cmd(
-    f"python -m pip install --no-warn-script-location -r ./core/requirements.dev",
+    [
+      "source .env/bin/activate",
+      f"python -m pip install --no-warn-script-location -r ./core/requirements.dev",
+    ],
     path=p_dir
   )
   print("  \33[1;32m✅ Successfully Installed          \33[0m")
@@ -242,7 +248,10 @@ try:
   print("\n> Installing Overlord")
   print("  \33[5;33m🔶\33[0m Installing", end="\r")
   cmd(
-    f"python core.py tools install",
+    [
+      "source .env/bin/activate",
+      f"python core.py tools install",
+    ],
     path=p_dir
   )
 
