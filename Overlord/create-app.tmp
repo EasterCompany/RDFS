@@ -213,6 +213,8 @@ try:
   # Check if nginx is available
   nginx_status = cmd("nginx -v")
   if len(nginx_status.stderr) > 0 and len(nginx_status.stdout) == 0:
+    print(nginx_status.stderr)
+    print(nginx_status.stdout)
     if sudo_pass is None:
       print("\n> Root Access Required to Install Dependencies")
       sudo_pass = getpass.getpass("  [sudo] Enter Password: ")
