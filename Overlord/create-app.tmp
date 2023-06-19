@@ -235,7 +235,7 @@ try:
   # Create virtual environment
   print("\n> Creating Virtual Environment")
   print("  \33[5;33m🔶\33[0m Building Environment", end="\r")
-  cmd(f"{sys.executable} -m venv {n}", path=p_dir)
+  cmd(f"{sys.executable} -m venv {n} --system-site-packages", path=p_dir)
   cmd(f"mv {n} .env", path=p_dir)
   print("  \33[1;32m✅ Successfully Created Environment\33[0m")
 
