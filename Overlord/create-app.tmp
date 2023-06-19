@@ -211,8 +211,8 @@ try:
     print("  \33[1;32m✅ Verified Node          \33[0m")
 
   # Check if nginx is available
-  node_status = cmd("nginx -v")
-  if len(node_status.stderr) > 0 and len(node_status.stdout) == 0:
+  nginx_status = cmd("nginx -v")
+  if len(nginx_status.stderr) > 0 and len(nginx_status.stdout) == 0:
     if sudo_pass is None:
       print("\n> Root Access Required to Install Dependencies")
       sudo_pass = getpass.getpass("  [sudo] Enter Password: ")
@@ -220,6 +220,14 @@ try:
     print("  \33[5;33m🔶\33[0m Downloading & Installing", end="\r")
     cmd_status = cmd(f"echo {sudo_pass} | sudo -S apt-get install -y nginx")
     print("  \33[1;32m✅ Successfully Installed          \33[0m")
+
+  # Verify Nginx was installed
+  print("\n> Verifying Nginx")
+  nginx_status = cmd("node -v")
+  if len(nginx_status.stderr) > 0 and len(nginx_status.stdout) == 0:
+    print("  \33[1;31m❌ Failed to Verify Nginx\33[0m")
+  else:
+    print("  \33[1;32m✅ Verified Nginx          \33[0m")
 
   # Declare installation a success at this point
   install_success = True
@@ -262,7 +270,7 @@ try:
     print(f"  \33[1;31m⚠️ Your Project Cannot be Installed    \n      @ {p_dir}\33[0m\n")
     print(
       f"     Enter the directory using 'cd {n}' and then run:\n\n"
-      "     >> python3 core.py tools install\n\n"
+      "     >> python3 core.py env\n\n"
       "     to complete the installation process manually.\n"
     )
 
